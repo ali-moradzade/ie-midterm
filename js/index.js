@@ -69,7 +69,11 @@ function setUserInfo(userInfo) {
             }
         }
         else {
-            element.innerHTML = userInfo[key] || '';
+            if (userInfo[key]) {
+                element.innerHTML = `${titleCase(key)}: ${userInfo[key]}`;
+            } else {
+                element.innerHTML = '';
+            }
         }
     });
 }
@@ -83,5 +87,12 @@ function clearUserInfo() {
         else {
             element.innerHTML = '';
         }
+    });
+}
+
+// Utility functions
+function titleCase(str) {
+    return str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 }

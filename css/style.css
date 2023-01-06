@@ -1,4 +1,6 @@
 body {
+    font-family: "Lato", "Vibes", serif;
+    color: wheat;
     margin: 0;
     background-image: url("../images/github.png");
     background-position: center;
@@ -14,7 +16,8 @@ body {
   Right box, which contains the form
  */
 .submit-container {
-    background-color: white;
+    background-color: rgba(0,0,0,0.5);
+    /*background-color: white;*/
     padding: 10px;
     border-radius: 10px;
     width: 300px;
@@ -59,8 +62,9 @@ input[type="submit"] {
  */
 .user-container {
     height: 400px;
-    width: 400px;
-    background-color: white;
+    width: 500px;
+    background-color: rgba(0,0,0,0.5);
+    /*background-color: white;*/
     padding: 5px;
     border-radius: 10px;
     display: flex;
@@ -78,9 +82,15 @@ input[type="submit"] {
     gap: 1rem;
 }
 
+.row2 {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
 /* image column */
 .col1 {
     min-width: 10rem;
+    padding-left: 15px;
 }
 
 .col1 img {
@@ -92,7 +102,11 @@ input[type="submit"] {
 
 /* name and location column */
 .col2 {
-    margin: auto;
+    /*margin: auto;*/
+    width: fit-content;
+    margin-top: 50px;
+    margin-left: 40px;
+    margin-right: 20px;
 }
 
 pre {
