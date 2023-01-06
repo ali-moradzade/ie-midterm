@@ -11,7 +11,9 @@
 <body>
 	<div class="user-container">
 		<div class="row1">
-			<div class="col1" id="img"></div>
+			<div class="col1">
+				<img id="avatar_url" src="" alt="">
+			</div>
 			<div id="col2" class="col2 text-center">
 				<p id="name"></p>
 				<p id="blog"></p>
@@ -23,10 +25,11 @@
 		</div>
 	</div>
 	<div class="submit-container">
-		<form>
+		<form onsubmit="handle(event)">
 			<input type="text" name="username" id="username" placeholder="Username" required/>
 			<input type="submit" name="submit" value="Submit"/>
 		</form>
 	</div>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
