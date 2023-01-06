@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    background-image: url("../images/github.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+  Right box, which contains the form
+ */
+.submit-container {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 300px;
+}
+
+/*
+  Form in the right box, which contains the input and the button
+ */
+.submit-container form {
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/*
+  Input in the form, in the right box
+ */
+input {
+    height: 3rem;
+    border: 1px solid #a82f2f;
+    border-radius: 5px;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+input[type="text"] {
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/*
+ Left box, which will contain user information
+ */
+.user-container {
+    height: 400px;
+    width: 400px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 10rem;
+    margin-right: 3rem;
+}
+
+/*
+  Top row, which contains image and name and location
+ */
+.row1 {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+/* image column */
+.col1 {
+    min-width: 10rem;
+}
+
+.col1 img {
+    width: 10rem;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+/* name and location column */
+.col2 {
+    margin: auto;
+}
+
+pre {
+    margin: 0;
+    font-family: inherit;
+}
+
+.text-center {
+    text-align: center;
+}
