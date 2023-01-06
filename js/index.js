@@ -1,11 +1,11 @@
-const userInfoKeys = ['name', 'avatar_url', 'blog', 'bio', 'location'];
+const userInfoKeys = ['name', 'avatar_url', 'blog', 'bio', 'location', 'most_used_language'];
 
 // clear local storage
 console.log('Clearing local storage');
 localStorage.clear();
 
 async function handle(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     const userName = document.getElementById('username').value;
 
@@ -14,8 +14,7 @@ async function handle(e) {
 
     if (userInfo) {
         setUserInfo(userInfo);
-    }
-    else {
+    } else {
         console.log('User not found');
         clearUserInfo();
         userNotFound();
@@ -42,16 +41,54 @@ async function getDataWithCaching(username) {
 
         const json = await response.json();
 
+        // Get most used language
+        console.log('Getting most used language');
+        const mostUsedLanguage = await getMostUsedLanguage(username);
+        console.log(mostUsedLanguage);
+
         const data = {
             name: json.name,
             avatar_url: json.avatar_url,
             blog: json.blog,
             bio: json.bio,
-            location: json.location
+            location: json.location,
+            most_used_language: mostUsedLanguage
         };
         localStorage.setItem(username, JSON.stringify(data));
-        return json;
+        return data;
     }
+}
+
+async function getMostUsedLanguage(username) {
+    const fiveRecentUsedReposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=5&sort=pushed`);
+    const fiveRecentUsedRepos = await fiveRecentUsedReposResponse.json();
+
+    const mostUsedLanguage = {
+        language: '',
+        point: 0
+    };
+
+    for (let userRepo of fiveRecentUsedRepos) {
+        const languagesResponse = await fetch(userRepo.languages_url);
+        const languages = await languagesResponse.json();
+
+        if (Object.keys(languages).length === 0) {
+            continue;
+        }
+
+        // languages is like: { "JavaScript": 1234, "HTML": 1234 }
+
+        // Find key, value with maximum value
+        const language = Object.keys(languages).reduce((a, b) => languages[a] > languages[b] ? a : b);
+        const point = languages[language];
+
+        if (point > mostUsedLanguage.point) {
+            mostUsedLanguage.language = language;
+            mostUsedLanguage.point = point;
+        }
+    }
+
+    return mostUsedLanguage.language;
 }
 
 function setUserInfo(userInfo) {
@@ -68,8 +105,7 @@ function setUserInfo(userInfo) {
                 element.src = userInfo[key];
                 element.style.display = 'block';
             }
-        }
-        else {
+        } else {
             if (userInfo[key]) {
                 element.innerHTML = `${titleCase(key)}: ${userInfo[key]}`;
             } else {
@@ -84,8 +120,7 @@ function clearUserInfo() {
         const element = document.getElementById(key);
         if (key === 'avatar_url') {
             element.style.display = 'none';
-        }
-        else {
+        } else {
             element.innerHTML = '';
         }
     });
@@ -100,7 +135,7 @@ function userNotFound() {
 
 // Utility functions
 function titleCase(str) {
-    return str.replace(/\w\S*/g, function(txt) {
+    return str.replaceAll('_', ' ').replace(/\w\S*/g, function (txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 }
