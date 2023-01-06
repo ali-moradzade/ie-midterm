@@ -47,12 +47,16 @@ input {
 
 input[type="text"] {
     box-sizing: border-box;
+    background-color: #e3d7cc;
 }
 
 input[type="submit"] {
-    background-color: #4caf50;
-    color: white;
-    border: none;
+    /* Set it to be transparent */
+    background-color: transparent;
+    border: 1px solid #c7a019;
+    border-radius: 15px;
+    color: #b2b2ab;
+    /*border: none;*/
     cursor: pointer;
     font-weight: bold;
 }
