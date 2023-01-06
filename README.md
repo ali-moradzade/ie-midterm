@@ -1,2 +1,2 @@
-# id-midterm
-Checking Github Users Info
+# Internet Engineering Midterm
+Checking GitHub Users Info
