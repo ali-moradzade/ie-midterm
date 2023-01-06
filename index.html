@@ -10,6 +10,7 @@
 </head>
 <body>
 	<div class="user-container">
+		<p id="message"></p>
 		<div class="row1">
 			<div class="col1">
 				<img id="avatar_url" src="" alt="">
@@ -25,7 +26,7 @@
 		</div>
 	</div>
 	<div class="submit-container">
-		<form onsubmit="handle(event)">
+		<form onsubmit="return handle(event)">
 			<input type="text" name="username" id="username" placeholder="Username" required/>
 			<input type="submit" name="submit" value="Submit"/>
 		</form>
