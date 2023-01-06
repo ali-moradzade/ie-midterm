@@ -18,8 +18,7 @@ async function handle(e) {
     else {
         console.log('User not found');
         clearUserInfo();
-        document.getElementById('message').innerHTML = 'User not found';
-        document.getElementById('message').style.fontSize = '1.5em';
+        userNotFound();
     }
 }
 
@@ -56,6 +55,8 @@ async function getDataWithCaching(username) {
 }
 
 function setUserInfo(userInfo) {
+    console.log('Set not found image to go away');
+    document.getElementById('not-found-image').style.display = 'none';
     document.getElementById('col2').style.display = 'block';
     document.getElementById('message').innerHTML = '';
 
@@ -88,6 +89,13 @@ function clearUserInfo() {
             element.innerHTML = '';
         }
     });
+}
+
+function userNotFound() {
+    document.getElementById('message').innerHTML = 'User not found';
+    document.getElementById('message').style.fontSize = '1.5em';
+
+    document.getElementById('not-found-image').style.display = 'block';
 }
 
 // Utility functions
